@@ -25,9 +25,9 @@ export const problems: Problem[] = [
     topic: "Arrays", leetcodeUrl: "https://leetcode.com/problems/two-sum/",
     description: "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.",
     examples: [
-      { input: "nums = [2,7,11,15], target = 9", output: "[0,1]", explanation: "Because nums[0] + nums[1] == 9, we return [0, 1]." },
+      { input: "nums = [2,7,11,18], target = 9", output: "[0,1]", explanation: "Because nums[0] + nums[1] == 9, we return [0, 1]." },
     ],
-    editorial: "Use a hash map to store each number's index. For each element, check if target - current exists in the map. Time: O(n), Space: O(n).",
+    editorial: "Use a hash map concept to store each number's index. For each element, check if target - current exists in the map. Time: O(n), Space: O(n).",
     videoUrl: "https://www.youtube.com/embed/KLlXCFG5TnA",
   },
   {
@@ -100,4 +100,41 @@ export const problems: Problem[] = [
     examples: [{ input: "height = [0,1,0,2,1,0,1,3,2,1,2,1]", output: "6" }],
     editorial: "Use two pointers from both ends. Track left_max and right_max. Water at each position = min(left_max, right_max) - height[i].",
   },
+  {
+  id: "boat-to-save-people",
+  title: "Boats to Save People",
+  difficulty: "Medium",
+  tags: ["Array", "Two Pointers", "Greedy"],
+  topic: "Array",
+
+  leetcodeUrl: "https://leetcode.com/problems/boats-to-save-people/description/",
+
+  description: `You are given an array people where people[i] is the weight of the ith person, 
+and an infinite number of boats where each boat can carry a maximum weight of limit. 
+
+Each boat carries at most two people at the same time, provided the sum of the weight 
+of those people is at most limit.
+
+Return the minimum number of boats to carry every given person.`,
+
+  examples: [
+    {
+      input: "people = [1,2], limit = 3",
+      output: "1",
+      explanation: "1 + 2 = 3, so both can share one boat."
+    },
+    {
+      input: "people = [3,2,2,1], limit = 3",
+      output: "3",
+      explanation: "Boats: (1,2), (2), (3)"
+    },
+    {
+      input: "people = [3,5,3,4], limit = 5",
+      output: "4",
+      explanation: "Each person goes alone because no pair fits within limit."
+    }
+  ],
+
+
+}
 ];

@@ -5,30 +5,82 @@
 @tailwind utilities;
 
 @layer base {
+  /* 🌞 LIGHT MODE (DEFAULT) */
   :root {
-    --background: 240 15% 5%;
-    --foreground: 220 15% 90%;
-    --card: 240 12% 8%;
-    --card-foreground: 220 15% 90%;
-    --popover: 240 12% 8%;
-    --popover-foreground: 220 15% 90%;
+    --background: 0 0% 100%;
+    --foreground: 222 84% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 4%;
+
     --primary: 270 80% 60%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 12% 14%;
-    --secondary-foreground: 220 15% 85%;
-    --muted: 240 10% 12%;
-    --muted-foreground: 220 10% 55%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 84% 4%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
     --accent: 200 90% 55%;
     --accent-foreground: 0 0% 100%;
+
     --destructive: 0 72% 55%;
     --destructive-foreground: 0 0% 100%;
-    --border: 240 12% 16%;
-    --input: 240 12% 16%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
     --ring: 270 80% 60%;
+
     --radius: 0.75rem;
+
     --easy: 142 70% 45%;
     --medium: 38 92% 50%;
     --hard: 0 72% 55%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 84% 4%;
+    --sidebar-primary: 270 80% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 84% 4%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 270 80% 60%;
+  }
+
+  /* 🌙 DARK MODE */
+  .dark {
+    --background: 240 15% 5%;
+    --foreground: 220 15% 90%;
+
+    --card: 240 12% 8%;
+    --card-foreground: 220 15% 90%;
+
+    --popover: 240 12% 8%;
+    --popover-foreground: 220 15% 90%;
+
+    --primary: 270 80% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 12% 14%;
+    --secondary-foreground: 220 15% 85%;
+
+    --muted: 240 10% 12%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 200 90% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 12% 16%;
+    --input: 240 12% 16%;
+    --ring: 270 80% 60%;
+
     --sidebar-background: 240 12% 7%;
     --sidebar-foreground: 220 15% 85%;
     --sidebar-primary: 270 80% 60%;
@@ -45,7 +97,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased transition-colors duration-300;
   }
 }
 
