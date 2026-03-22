@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Code2, BookOpen, Trophy, LayoutDashboard, Sun, Moon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const navItems = [
   { path: "/", label: "Home", icon: LayoutDashboard },
@@ -11,22 +11,14 @@ const navItems = [
 
 const Navbar = () => {
   const location = useLocation();
-  const [isDark, setIsDark] = useState(false);
 
-  // 🔥 USER FETCH YAHAN KARNA HAI
+  const [isDark, setIsDark] = useState(
+    localStorage.getItem("theme") === "dark"
+  );
+
   const user = JSON.parse(localStorage.getItem("user"));
 
-  // 👉 Load saved theme
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-
-    if (savedTheme === "dark") {
-      document.documentElement.classList.add("dark");
-      setIsDark(true);
-    }
-  }, []);
-
-  // 👉 Toggle theme
+  // 🔥 TOGGLE THEME
   const toggleTheme = () => {
     const html = document.documentElement;
 
@@ -79,7 +71,7 @@ const Navbar = () => {
             })}
           </div>
 
-          {/* 🔥 USER SECTION */}
+          {/* USER */}
           {user ? (
             <div className="flex items-center gap-3 ml-2">
               <span className="text-sm font-medium">👤 {user.name}</span>
@@ -103,7 +95,7 @@ const Navbar = () => {
             </button>
           )}
 
-          {/* 🌗 Theme Toggle */}
+          {/* 🌗 THEME TOGGLE */}
           <button
             onClick={toggleTheme}
             className="ml-2 flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background hover:bg-secondary transition"

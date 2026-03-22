@@ -31,13 +31,17 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4">
+    <div className="min-h-screen flex items-center justify-center px-4 
+    bg-background grid-bg">
 
       {/* 🔥 CARD */}
-      <div className="w-full max-w-xs p-5 bg-background border border-border rounded-xl shadow-md">
+      <div className="w-full max-w-sm p-6 
+      bg-card/80 backdrop-blur-xl 
+      border border-border 
+      rounded-2xl shadow-2xl glow-purple">
 
         {/* Heading */}
-        <h2 className="text-lg font-semibold text-center mb-5">
+        <h2 className="text-2xl font-bold text-center mb-6 glow-text">
           Login to PrepArena
         </h2>
 
@@ -47,7 +51,11 @@ const Login = () => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full h-9 px-3 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+          className="w-full h-11 px-4 mb-3 rounded-lg 
+          bg-background border border-input 
+          text-foreground placeholder-muted-foreground
+          focus:outline-none focus:ring-2 focus:ring-primary 
+          transition"
         />
 
         {/* Password */}
@@ -56,19 +64,27 @@ const Login = () => {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full h-9 px-3 mt-3 rounded-md border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+          className="w-full h-11 px-4 mb-4 rounded-lg 
+          bg-background border border-input 
+          text-foreground placeholder-muted-foreground
+          focus:outline-none focus:ring-2 focus:ring-primary 
+          transition"
         />
 
         {/* Button */}
         <button
           onClick={handleLogin}
-          className="w-full mt-4 h-9 rounded-md bg-primary text-white text-sm font-medium hover:opacity-90 transition"
+          className="w-full h-11 rounded-lg 
+          bg-primary text-primary-foreground 
+          font-semibold 
+          hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30
+          transition-all duration-300"
         >
           Log In
         </button>
 
         {/* Bottom */}
-        <p className="text-xs text-center mt-3 text-muted-foreground">
+        <p className="text-sm text-center mt-4 text-muted-foreground">
           Don’t have an account?{" "}
           <span
             onClick={() => navigate("/signup")}

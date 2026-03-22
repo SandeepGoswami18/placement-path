@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -6,10 +7,9 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSignup = async () => {
-    console.log("🔥 Button clicked");
+  const navigate = useNavigate();
 
-    // 🔒 Basic validation
+  const handleSignup = async () => {
     if (!name || !email || !password) {
       alert("Please fill all fields");
       return;
@@ -23,67 +23,108 @@ const Signup = () => {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-          name,
-          email,
-          password
-        })
+        body: JSON.stringify({ name, email, password })
       });
 
       const data = await res.json();
 
-      console.log("✅ Response:", data);
-
       if (res.ok) {
         alert("Signup successful 🎉");
-
-        // 🔄 reset form
-        setName("");
-        setEmail("");
-        setPassword("");
+        navigate("/login");
       } else {
         alert(data.message || "Something went wrong");
       }
 
     } catch (error) {
-      console.log("❌ Error:", error);
-      alert("Server error (check backend)");
+      alert("Server error");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={{ padding: "50px" }}>
-      <h2>Signup Page</h2>
+    <div className="min-h-screen flex items-center justify-center 
+    bg-background grid-bg">
 
-      <input
-        type="text"
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <br /><br />
+      {/* 🔥 OUTER WRAPPER */}
+      <div className="w-full max-w-md px-6">
 
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <br /><br />
+        {/* 🔥 CARD */}
+        <div className="p-6 
+        bg-card/80 backdrop-blur-xl 
+        border border-border 
+        rounded-2xl shadow-xl shadow-purple-500/10">
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br /><br />
+          {/* Heading */}
+          <h2 className="text-xl font-semibold text-center mb-5 glow-text">
+            Create your account
+          </h2>
 
-      <button onClick={handleSignup} disabled={loading}>
-        {loading ? "Signing up..." : "Sign Up"}
-      </button>
+          {/* Name */}
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full h-10 px-3 mb-3 rounded-lg 
+            bg-background border border-input 
+            text-foreground placeholder-muted-foreground
+            focus:outline-none focus:ring-2 focus:ring-primary 
+            transition"
+          />
+
+          {/* Email */}
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full h-10 px-3 mb-3 rounded-lg 
+            bg-background border border-input 
+            text-foreground placeholder-muted-foreground
+            focus:outline-none focus:ring-2 focus:ring-primary 
+            transition"
+          />
+
+          {/* Password */}
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full h-10 px-3 mb-4 rounded-lg 
+            bg-background border border-input 
+            text-foreground placeholder-muted-foreground
+            focus:outline-none focus:ring-2 focus:ring-primary 
+            transition"
+          />
+
+          {/* Button */}
+          <button
+            onClick={handleSignup}
+            disabled={loading}
+            className="w-full h-10 rounded-lg 
+            bg-primary text-primary-foreground 
+            font-medium 
+            hover:scale-105 hover:shadow-md hover:shadow-purple-500/20
+            transition-all duration-300 disabled:opacity-60"
+          >
+            {loading ? "Signing up..." : "Sign Up"}
+          </button>
+
+          {/* Bottom */}
+          <p className="text-xs text-center mt-4 text-muted-foreground">
+            Already have an account?{" "}
+            <span
+              onClick={() => navigate("/login")}
+              className="text-primary cursor-pointer hover:underline"
+            >
+              Log in
+            </span>
+          </p>
+
+        </div>
+      </div>
     </div>
   );
 };
